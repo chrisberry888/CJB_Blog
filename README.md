@@ -1,5 +1,7 @@
 # CJB_Blog
 
+This repository is my attempt of creating a website entirely using ChatGPT/Codex. I am exploring the capabilities of LLMs, and seeing the breadth of what it is able to create and do for me.
+
 Local-only Django personal content site for Chris Berry. It includes a home page, blog posts, video posts using YouTube embeds, photo posts, a link page, admin-editable navigation, and browser-local theme controls.
 
 ## Stack

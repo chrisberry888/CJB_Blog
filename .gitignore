@@ -8,4 +8,4 @@ media/
 staticfiles/
 .env
 .DS_Store
-
+.prompts.txt
