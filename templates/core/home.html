@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="home-layout">
+    <div class="profile-block">
+      {% if home_page.profile_image %}
+        <img src="{{ home_page.profile_image.url }}" alt="{{ home_page.title }}" class="profile-image">
+      {% else %}
+        <div class="profile-placeholder" aria-hidden="true">
+          <span>CB</span>
+        </div>
+      {% endif %}
+    </div>
+    <div class="home-copy">
+      <p class="eyebrow">Personal site</p>
+      <h1>{{ home_page.title }}</h1>
+      <div class="markdown-body">
+        {{ intro_html }}
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

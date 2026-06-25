@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="content-page">
+    <div class="page-actions">
+      <a class="button-link" href="{% url 'photo_archive' %}">Archive</a>
+    </div>
+    {% if photo %}
+      <article class="article">
+        <p class="eyebrow">{% if is_latest %}Latest photo{% else %}Photo{% endif %}</p>
+        <h1>{{ photo.title }}</h1>
+        <p class="meta">{{ photo.published_at|date:"F j, Y" }}</p>
+        <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="photo-main">
+        {% if photo.tags %}
+          <p class="tags">{{ photo.tags }}</p>
+        {% endif %}
+        <div class="markdown-body">
+          {{ caption_html }}
+        </div>
+      </article>
+    {% else %}
+      <section class="empty-state">
+        <h1>Photos</h1>
+        <p>No published photo posts yet. Add a photo post with an uploaded image from the Django admin when ready.</p>
+      </section>
+    {% endif %}
+  </section>
+{% endblock %}
+

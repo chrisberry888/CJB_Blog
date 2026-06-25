@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="links-page">
+    <header class="archive-header">
+      <p class="eyebrow">Connect</p>
+      <h1>Links</h1>
+    </header>
+    {% if link_items %}
+      <div class="link-list">
+        {% for link in link_items %}
+          <a class="link-card" href="{{ link.url }}"{% if link.opens_in_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
+            {% if link.icon %}
+              <img src="{{ link.icon.url }}" alt="" class="link-icon">
+            {% else %}
+              <span class="link-icon link-icon-placeholder" aria-hidden="true">&#8599;</span>
+            {% endif %}
+            <span>
+              <strong>{{ link.title }}</strong>
+              {% if link.description %}
+                <small>{{ link.description }}</small>
+              {% endif %}
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <section class="empty-state">
+        <h2>No active links yet</h2>
+        <p>Add links from the Django admin to populate this page.</p>
+      </section>
+    {% endif %}
+  </section>
+{% endblock %}

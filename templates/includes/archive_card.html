@@ -1,0 +1,24 @@
+<article class="archive-card">
+  {% if kind == "photo" and item.image %}
+    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="archive-card-image">
+  {% elif kind == "video" and item.thumbnail %}
+    <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}" class="archive-card-image">
+  {% endif %}
+  <div class="archive-card-body">
+    <p class="meta">{{ item.published_at|date:"M j, Y" }}</p>
+    {% if kind == "blog" %}
+      <h2><a href="{% url 'blog_detail' item.slug %}">{{ item.title }}</a></h2>
+      <p>{{ item.body_markdown|striptags|truncatewords:28 }}</p>
+    {% elif kind == "video" %}
+      <h2><a href="{% url 'video_detail' item.slug %}">{{ item.title }}</a></h2>
+      <p>{{ item.description_markdown|striptags|truncatewords:28 }}</p>
+    {% elif kind == "photo" %}
+      <h2><a href="{% url 'photo_detail' item.slug %}">{{ item.title }}</a></h2>
+      <p>{{ item.caption_markdown|striptags|truncatewords:28 }}</p>
+    {% endif %}
+    {% if item.tags %}
+      <p class="tags">{{ item.tags }}</p>
+    {% endif %}
+  </div>
+</article>
+

@@ -1,0 +1,24 @@
+<button class="settings-button" type="button" data-settings-toggle aria-expanded="false" aria-controls="settings-panel">
+  <span aria-hidden="true">&#9881;</span>
+  <span>Settings</span>
+</button>
+
+<section class="settings-panel" id="settings-panel" data-settings-panel hidden>
+  <div class="control-group">
+    <label for="theme-background">Background</label>
+    <input type="color" id="theme-background" data-theme-background>
+  </div>
+  <div class="control-group">
+    <label for="theme-text">Text</label>
+    <input type="color" id="theme-text" data-theme-text>
+  </div>
+  <div class="control-group">
+    <span>Text size</span>
+    <div class="segmented-control" data-theme-size-group>
+      <label><input type="radio" name="theme-size" value="small">Small</label>
+      <label><input type="radio" name="theme-size" value="medium">Medium</label>
+      <label><input type="radio" name="theme-size" value="large">Large</label>
+    </div>
+  </div>
+  <button class="secondary-button" type="button" data-theme-reset>Reset defaults</button>
+</section>

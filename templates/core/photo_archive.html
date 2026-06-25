@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="content-page">
+    <header class="archive-header">
+      <p class="eyebrow">Archive</p>
+      <h1>Photos</h1>
+    </header>
+    {% if page_obj.object_list %}
+      <div class="archive-list">
+        {% for photo in page_obj.object_list %}
+          {% include "includes/archive_card.html" with item=photo kind="photo" %}
+        {% endfor %}
+      </div>
+      {% include "includes/pagination.html" %}
+    {% else %}
+      <section class="empty-state">
+        <h2>No published photo posts yet</h2>
+        <p>Create and publish a photo post in admin to populate this archive.</p>
+      </section>
+    {% endif %}
+  </section>
+{% endblock %}
+

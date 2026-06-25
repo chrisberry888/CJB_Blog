@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="content-page">
+    <div class="page-actions">
+      <a class="button-link" href="{% url 'blog_archive' %}">Archive</a>
+    </div>
+    {% if post %}
+      <article class="article">
+        <p class="eyebrow">{% if is_latest %}Latest blog post{% else %}Blog{% endif %}</p>
+        <h1>{{ post.title }}</h1>
+        <p class="meta">{{ post.published_at|date:"F j, Y" }}</p>
+        {% if post.tags %}
+          <p class="tags">{{ post.tags }}</p>
+        {% endif %}
+        <div class="markdown-body">
+          {{ body_html }}
+        </div>
+      </article>
+    {% else %}
+      <section class="empty-state">
+        <h1>Blog</h1>
+        <p>No published blog posts yet. Add one from the Django admin when ready.</p>
+      </section>
+    {% endif %}
+  </section>
+{% endblock %}
+

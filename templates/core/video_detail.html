@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="content-page">
+    <div class="page-actions">
+      <a class="button-link" href="{% url 'video_archive' %}">Archive</a>
+    </div>
+    {% if video %}
+      <article class="article">
+        <p class="eyebrow">{% if is_latest %}Latest video{% else %}Video{% endif %}</p>
+        <h1>{{ video.title }}</h1>
+        <p class="meta">{{ video.published_at|date:"F j, Y" }}</p>
+        {% if video.embed_url %}
+          <div class="video-embed">
+            <iframe
+              src="{{ video.embed_url }}"
+              title="{{ video.title }}"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        {% else %}
+          <div class="empty-state compact">
+            <p>This video does not have a valid YouTube URL yet.</p>
+          </div>
+        {% endif %}
+        {% if video.tags %}
+          <p class="tags">{{ video.tags }}</p>
+        {% endif %}
+        <div class="markdown-body">
+          {{ description_html }}
+        </div>
+      </article>
+    {% else %}
+      <section class="empty-state">
+        <h1>Videos</h1>
+        <p>No published videos yet. Add a YouTube video post from the Django admin when ready.</p>
+      </section>
+    {% endif %}
+  </section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ page_title|default:site_settings.site_title }}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <style>
+    :root {
+      --bg-color: {{ site_settings.default_background_color|default:"#2B213A" }};
+      --text-color: {{ site_settings.default_text_color|default:"#F6F0FF" }};
+      --font-size-base: {% if site_settings.default_font_size == "small" %}16px{% elif site_settings.default_font_size == "large" %}20px{% else %}18px{% endif %};
+    }
+  </style>
+</head>
+<body
+  data-default-background="{{ site_settings.default_background_color|default:'#2B213A' }}"
+  data-default-text="{{ site_settings.default_text_color|default:'#F6F0FF' }}"
+  data-default-font-size="{{ site_settings.default_font_size|default:'medium' }}"
+>
+  {% include "includes/drawer.html" %}
+  <main class="site-main" id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+  <script src="{% static 'js/site.js' %}" defer></script>
+</body>
+</html>
+
