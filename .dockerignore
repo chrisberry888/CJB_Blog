@@ -1,0 +1,14 @@
+.git
+.agents
+.codex
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+media
+staticfiles
+.env
+.DS_Store
+

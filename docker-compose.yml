@@ -1,0 +1,31 @@
+services:
+  web:
+    build:
+      context: .
+    image: cjb-blog:latest
+    container_name: cjb-blog
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-8000}:8000"
+    environment:
+      DJANGO_SECRET_KEY: "${DJANGO_SECRET_KEY:-django-insecure-change-me-before-running-anywhere-public}"
+      DJANGO_DEBUG: "${DJANGO_DEBUG:-False}"
+      DJANGO_ALLOWED_HOSTS: "${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1}"
+      DJANGO_CSRF_TRUSTED_ORIGINS: "${DJANGO_CSRF_TRUSTED_ORIGINS:-http://localhost:8000,http://127.0.0.1:8000}"
+      DJANGO_STATIC_URL: "/static/"
+      DJANGO_STATIC_ROOT: "/app/staticfiles"
+      DJANGO_MEDIA_URL: "/media/"
+      DJANGO_MEDIA_ROOT: "/app/media"
+      DJANGO_SERVE_MEDIA: "${DJANGO_SERVE_MEDIA:-True}"
+      SQLITE_PATH: "/app/data/db.sqlite3"
+      RUN_MIGRATIONS: "${RUN_MIGRATIONS:-1}"
+      COLLECT_STATIC: "${COLLECT_STATIC:-1}"
+      SEED_INITIAL_DATA: "${SEED_INITIAL_DATA:-0}"
+    volumes:
+      - cjb_blog_data:/app/data
+      - cjb_blog_media:/app/media
+
+volumes:
+  cjb_blog_data:
+  cjb_blog_media:
+
